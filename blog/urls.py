@@ -4,6 +4,6 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.index),
-    url(r'^(?P<slug>[\w\d-]+)/$', views.blog, name='detail'),
+    url(r'^$', views.list, name='list'),
+    url(r'^(?P<slug>[\w\d-]+)/$', views.detail, name='detail'),
 ]

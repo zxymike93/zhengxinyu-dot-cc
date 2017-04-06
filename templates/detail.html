@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 blog-main">
+      <div class="blog-post">
+        <h1 class="blog-title">{% block detail-title %}{% endblock %}</h1>
+        <p>{% block detail-content %}{% endblock %}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
