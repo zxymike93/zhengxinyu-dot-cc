@@ -8,6 +8,7 @@
     <title>{% block header %}XinYu Zheng's Blog{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/code.css' %}">
   </head>
 
   <body>
@@ -15,11 +16,11 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Home</a>
-          <a class="blog-nav-item" href="#">Blog</a>
-          <a class="blog-nav-item" href="#">Note</a>
-          <a class="blog-nav-item" href="#">Thought</a>
-          <a class="blog-nav-item" href="#">About</a>
+          <a class="blog-nav-item active" href="{% url 'list' %}">Home</a>
+          <a class="blog-nav-item" href="{% url 'list' %}">Blog</a>
+          <a class="blog-nav-item" href="/note/">Note</a>
+          <a class="blog-nav-item" href="/thought/">Thought</a>
+          <a class="blog-nav-item" href="/about/">About</a>
         </nav>
       </div>
     </div><!-- blog-masthead -->
