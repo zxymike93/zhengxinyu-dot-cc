@@ -13,8 +13,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from blog import views
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('blog.urls')),
+    url(r'^$', views.list, name='list'),
+    url(r'^(?P<slug>[\w\d-]+)/$', views.detail, name='detail'),
 ]
+
+handler404 = 'site_project.views.handler404'
