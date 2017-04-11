@@ -4,10 +4,10 @@
 {% block description %}This is Mike's Blog Demo.{% endblock %}
 
 {% block list %}
-{% for blog in blogs %}
-<div class="blog-post">
-  <h2 class="blog-post-title"><a href="{{ blog.blog_url }}">{{ blog.title }}</a></h1>
+  {% for blog in blogs %}
+  <div class="blog-post">
+    <h2 class="blog-post-title"><a href="{{ blog.blog_url }}">{{ blog.title }}</a></h2>
     <p class="blog-post-meta">{{ blog.subtitle }}</p>
   </div>
   {% endfor %}
-  {% endblock %}
+{% endblock %}

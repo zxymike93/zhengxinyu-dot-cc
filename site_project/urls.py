@@ -18,6 +18,7 @@ from blog import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^(?P<page>\d*)/$', views.list),
     url(r'^$', views.list, name='list'),
     url(r'^(?P<slug>[\w\d-]+)/$', views.detail, name='detail'),
 ]

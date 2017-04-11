@@ -1,11 +1,22 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 
 from .models import Blog
 
 
-def list(request):
-    blogs = Blog.objects.all()
-    return render(request, 'blog/list.html', context={'blogs': blogs})
+def list(request, page='1'):
+    print('BLOG-LIST')
+    page = int(page)
+    blogs = Blog.objects.all().order_by('-update_time')
+    p = Paginator(blogs, 7).page(page)
+
+    context = {
+        'blogs': p.object_list,
+        'next': p.next_page_number() if p.has_next() else None,
+        'previous': p.previous_page_number() if p.has_previous() else None,
+    }
+
+    return render(request, 'blog/list.html', context=context)
 
 
 def detail(request, slug):
