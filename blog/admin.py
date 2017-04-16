@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from .models import Blog
+from .models import Blog, BlogImage
 
 
 class BlogForm(forms.ModelForm):
@@ -15,10 +15,16 @@ class BlogForm(forms.ModelForm):
         # fields = ['title', 'content']
 
 
+class BlogImageInline(admin.TabularInline):
+
+    model = BlogImage
+    extra = 0
+
+
 class BlogAdmin(admin.ModelAdmin):
 
     form = BlogForm
+    inlines = [BlogImageInline]
 
 
 admin.site.register(Blog, BlogAdmin)
-

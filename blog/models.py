@@ -29,3 +29,8 @@ class Blog(models.Model):
     def blog_url(self):
         return reverse('detail', kwargs={'slug': self.slug})
 
+
+class BlogImage(models.Model):
+
+    blog = models.ForeignKey(Blog)
+    image = models.ImageField(upload_to='blog/')
