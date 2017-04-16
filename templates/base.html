@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block header %}XinYu Zheng's Blog{% endblock %}</title>
+    <title>{% block header %}Mike's Blog{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <link rel="stylesheet" href="{% static 'css/code.css' %}">
@@ -16,8 +16,7 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="{% url 'list' %}">Home</a>
-          <a class="blog-nav-item" href="{% url 'list' %}">Blog</a>
+          <a class="blog-nav-item active" href="{% url 'list' %}">Blog</a>
           <a class="blog-nav-item" href="/note/">Note</a>
           <a class="blog-nav-item" href="/thought/">Thought</a>
           <a class="blog-nav-item" href="/about/">About</a>
