@@ -131,44 +131,57 @@ STATICFILES_DIRS = [
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
+SERVER_EMAIL = secret.SERVER_EMAIL
+EMAIL_HOST = secret.EMAIL_HOST
+EMAIL_HOST_USER = secret.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = secret.EMAIL_HOST_PASSWORD
+EMAIL_PORT = secret.EMAIL_PORT
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.163.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 25
-ADMINS = (
-    ('', ''),
-)
+ADMINS = secret.ADMINS
 MANAGERS = ADMINS
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-
     'formatters': {
-        'default': {
+        'verbose': {
             'format': '%(levelname)s %(asctime)s %(module)s\
                 %(process)d %(thread)d %(message)s',
         },
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+        },
     },
-
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
     'handlers': {
         'console': {
             'level': 'INFO',
+            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
-            'formatter': 'default',
+            'formatter': 'simple',
         },
         'mail_admins': {
-            'level': 'INFO',
+            'level': 'WARNING',
             'class': 'django.utils.log.AdminEmailHandler',
         },
     },
-
     'loggers': {
         'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
+        'site_project.custom': {
             'handlers': ['console', 'mail_admins'],
             'level': 'INFO',
-            'propagate': False,
         },
     },
 }
