@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+from django.utils.log import DEFAULT_LOGGING
+
 from . import secret
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -140,48 +142,26 @@ EMAIL_USE_TLS = True
 ADMINS = secret.ADMINS
 MANAGERS = ADMINS
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s\
-                %(process)d %(thread)d %(message)s',
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s',
-        },
-    },
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        },
-    },
-    'handlers': {
-        'console': {
-            'level': 'INFO',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-        },
-        'mail_admins': {
-            'level': 'WARNING',
-            'class': 'django.utils.log.AdminEmailHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'WARNING',
-            'propagate': False,
-        },
-        'site_project.custom': {
-            'handlers': ['console', 'mail_admins'],
-            'level': 'INFO',
-        },
-    },
+
+LOGGING = DEFAULT_LOGGING
+
+LOGGING['formatters']['simple'] = {
+    'format': '[%(name)s] %(levelname)s: %(message)s'
 }
+LOGGING['formatters']['full'] = {
+    'format': '%(asctime)s [%(name)s] %(levelname)s: %(message)s'
+}
+LOGGING['handlers']['log_file'] = {
+    'level': 'ERROR',
+    'class': 'logging.handlers.RotatingFileHandler',
+    'filename': './log/error.log',
+    'maxBytes': 1048576,
+    'backupCount': 20,
+    'encoding': 'utf-8',
+    'formatter': 'full',
+    'filters': ['require_debug_false'],
+}
+
+LOGGING['handlers']['console'].pop('filters')
+LOGGING['handlers']['console']['formatter'] = 'simple'
+LOGGING['loggers']['django']['handlers'].append('log_file')
