@@ -1,6 +1,6 @@
 __pycache__/
 *.sqlite3
 venv/
-site_project/secret.py
 *.pyc
 docs/
+web/.env
