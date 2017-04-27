@@ -1,5 +1,9 @@
 version: '2'
 services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
   web:
     build: ./web
     command: gunicorn --workers=3 site_project.wsgi:application -b 0.0.0.0:8000
@@ -9,6 +13,8 @@ services:
       - "8000:8000"
     volumes:
       - ./web:/code
+    links:
+      - db
   nginx:
     restart: always
     build: ./nginx
