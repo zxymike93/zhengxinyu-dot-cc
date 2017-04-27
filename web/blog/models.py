@@ -6,7 +6,7 @@ from unidecode import unidecode
 
 
 class Blog(models.Model):
-    
+
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=150)

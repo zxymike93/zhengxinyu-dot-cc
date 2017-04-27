@@ -6,6 +6,7 @@ from pygments.formatters import html
 
 register = template.Library()
 
+
 class HighlightRenderer(mistune.Renderer):
     def block_code(self, code, lang):
         if not lang:
@@ -14,6 +15,7 @@ class HighlightRenderer(mistune.Renderer):
         lexer = get_lexer_by_name(lang, stripall=True)
         formatter = html.HtmlFormatter()
         return highlight(code, lexer, formatter)
+
 
 @register.filter
 def markdown(value):

@@ -21,4 +21,3 @@ def list(request, page='1'):
 def detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     return render(request, 'blog/detail.html', context={'blog': blog})
-
