@@ -1,10 +1,14 @@
 version: '2'
 services:
   db:
+    restart: always
     image: postgres
     ports:
       - "5432:5432"
+    volumes:
+      - postgres-volume:/data/postgres
   web:
+    restart: always
     build: ./web
     environment:
       PYTHONPATH: '/code'
@@ -27,3 +31,6 @@ services:
       - ./web:/code
     links:
       - web
+volumes:
+  postgres-volume:
+    driver: local
