@@ -9,9 +9,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = False
 
+ENVS = {}
+lines = open(os.path.join(BASE_DIR, 'env.txt'), 'r').readlines()
+for l in lines:
+    k, v = l.split('=')
+    ENVS[k] = v.strip()
+
 ROOT_URLCONF = 'site_project.urls'
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = ENVS['SECRET_KEY']
 
 WSGI_APPLICATION = 'site_project.wsgi.application'
 
@@ -92,12 +98,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'postgres',
+        # 'USER': 'postgres',
         # 'PASSWORD': 'password',
-        'HOST': 'db',
-        'PORT': 5432,
+        # 'HOST': 'db',
+        # 'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 
@@ -123,15 +131,15 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-SERVER_EMAIL = os.environ.get('SERVER_EMAIL')
+SERVER_EMAIL = ENVS['SERVER_EMAIL']
 
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST = ENVS['EMAIL_HOST']
 
-EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_PORT = ENVS['EMAIL_PORT']
 
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_USER = ENVS['EMAIL_HOST_USER']
 
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = ENVS['EMAIL_HOST_PASSWORD']
 
 EMAIL_USE_TLS = True
 
