@@ -1,16 +1,18 @@
 import os
+from pathlib import Path
 
 from django.utils.log import DEFAULT_LOGGING
 
 
 ALLOWED_HOSTS = ['*']
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SETTINGS_DIR = Path(__file__).resolve()
+BASE_DIR = SETTINGS_DIR.parent.parent.parent
 
 DEBUG = False
 
 ENVS = {}
-lines = open(os.path.join(BASE_DIR, 'env.txt'), 'r').readlines()
+lines = open(os.path.join(BASE_DIR, '.env'), 'r').readlines()
 for l in lines:
     k, v = l.split('=')
     ENVS[k] = v.strip()
