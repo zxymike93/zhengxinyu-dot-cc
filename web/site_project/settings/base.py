@@ -9,8 +9,6 @@ ALLOWED_HOSTS = ['*']
 SETTINGS_DIR = Path(__file__).resolve()
 BASE_DIR = SETTINGS_DIR.parent.parent.parent
 
-DEBUG = False
-
 ENVS = {}
 lines = open(os.path.join(BASE_DIR, '.env'), 'r').readlines()
 for l in lines:
@@ -85,34 +83,10 @@ TEMPLATES = [
     },
 ]
 
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
 # Upload session
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
-
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-DATABASES = {
-    'default': {
-        # postgresql
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'zhengxinyu',
-        'USER': ENVS['DB_USER'],
-        'PASSWORD': ENVS['DB_PASSWORD'],
-        'HOST': '127.0.0.1',
-        'PORT': 5432,
-        # sqlite3
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-    }
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
