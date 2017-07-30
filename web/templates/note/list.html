@@ -11,3 +11,16 @@
   </div>
   {% endfor %}
 {% endblock %}
+
+{% block paginator %}
+<nav>
+  <ul class="pager">
+    {% if notes.has_previous %}
+      <li><a href="?page={{ notes.previous_page_number }}">Previous</a></li>
+    {% endif %}
+    {% if notes.has_next %}
+      <li><a href="?page={{ notes.next_page_number }}">Next</a></li>
+    {% endif %}
+  </ul>
+</nav>
+{% endblock %}

@@ -1,22 +1,22 @@
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 
 from note.models import Note
 
 
-def list(request, page='1'):
-    print('note list')
-    page = int(page)
-    notes = Note.objects.all().order_by('-update_time')
-    p = Paginator(notes, 7).page(page)
+def list(request):
+    all_notes = Note.objects.filter(publish=True).order_by('-update_time')
+    paginator = Paginator(all_notes, 1)
 
-    context = {
-        'notes': p.object_list,
-        'next': p.next_page_number() if p.has_next() else None,
-        'previous': p.previous_page_number() if p.has_previous() else None,
-    }
+    page = request.GET.get('page')
+    try:
+        notes = paginator.page(page)
+    except PageNotAnInteger:
+        notes = paginator.page(1)
+    except EmptyPage:
+        notes = paginator.page(paginator.num_pages)
 
-    return render(request, 'note/list.html', context=context)
+    return render(request, 'note/list.html', {'notes': notes})
 
 
 def detail(request, slug):
