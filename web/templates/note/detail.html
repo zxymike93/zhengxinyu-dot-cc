@@ -1,0 +1,10 @@
+{% extends "detail.html" %}
+{% load markdownify %}
+
+{% block detail-title %}
+  {{ note.title }}
+{% endblock %}
+
+{% block detail-content %}
+  {{ note.content | markdown | safe }}
+{% endblock %}

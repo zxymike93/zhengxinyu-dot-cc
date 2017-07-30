@@ -1,0 +1,13 @@
+{% extends "list.html" %}
+
+{% block title %}Mike's Note{% endblock %}
+{% block description %}Keep an open mind.{% endblock %}
+
+{% block list %}
+  {% for note in notes %}
+  <div class="blog-post">
+    <h2 class="blog-post-title"><a href="{% url 'note:detail' note.slug %}">{{ note.title }}</a></h2>
+    <p class="blog-post-meta">{{ note.subtitle }}</p>
+  </div>
+  {% endfor %}
+{% endblock %}
