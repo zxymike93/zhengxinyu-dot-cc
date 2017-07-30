@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from note.models import Note, NoteImage
+from note.models import Note, NoteImage, Category
 
 
 class NoteForm(forms.ModelForm):
@@ -27,6 +27,9 @@ class NoteAdmin(admin.ModelAdmin):
     inlines = [NoteImageInline]
 
 
-admin.site.register(Note, NoteAdmin)
+class CategoryAdmin(admin.ModelAdmin):
+    pass
 
-# Register your models here.
+
+admin.site.register(Note, NoteAdmin)
+admin.site.register(Category, CategoryAdmin)

@@ -5,15 +5,30 @@ from django.utils.text import slugify
 from unidecode import unidecode
 
 
-class Note(models.Model):
+class CommonInfo(models.Model):
 
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=150)
+
+    class Meta:
+        abstract = True
+
+
+class Category(CommonInfo):
+
+    name = models.CharField(max_length=50, primary_key=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Note(CommonInfo):
+
+    category = models.ForeignKey(Category, null=True)
+    title = models.CharField(max_length=150, unique=True)
     subtitle = models.CharField(max_length=150)
     content = models.TextField()
     slug = models.SlugField(max_length=200, blank=True)
-    category = models.CharField(max_length=30, blank=True)
     publish = models.BooleanField(default=False)
 
     def __str__(self):

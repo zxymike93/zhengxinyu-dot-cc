@@ -24,3 +24,14 @@
   </ul>
 </nav>
 {% endblock %}
+
+{% block sidebar %}
+<div class="sidebar-module">
+  <h4>Categories</h4>
+  <ol class="list-unstyled">
+    {% for category in categories %}
+    <li><a href="{% url 'note:list' category %}">{{ category }}</a></li>
+    {% endfor %}
+  </ol>
+</div>
+{% endblock %}
