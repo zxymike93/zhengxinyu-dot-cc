@@ -1,13 +1,27 @@
-{% extends "list.html" %}
+{% extends "base.html" %}
 
-{% block title %}Mike's Blog{% endblock %}
-{% block description %}Keep an open mind.{% endblock %}
+{% block post %}
+<div class="posts">
+    <h1 class="content-subhead">Recent Posts</h1>
 
-{% block list %}
-  {% for blog in blogs %}
-  <div class="blog-post">
-    <h2 class="blog-post-title"><a href="{{ blog.blog_url }}">{{ blog.title }}</a></h2>
-    <p class="blog-post-meta">{{ blog.subtitle }}</p>
-  </div>
-  {% endfor %}
+    {% for blog in blogs %}
+    <section class="post">
+        <header class="post-header">
+            <img class="post-avatar" alt="Eric Ferraiuolo&#x27;s avatar" height="48" width="48" src="img/common/ericf-avatar.png">
+
+            <h2 class="post-title"><a href="{{ blog.blog_url }}">{{ blog.title }}</a></h2>
+
+            <p class="post-meta">
+                By <a class="post-author" href="#">Eric Ferraiuolo</a> under <a class="post-category post-category-js" href="#">JavaScript</a>
+            </p>
+        </header>
+
+        <div class="post-description">
+            <p>
+              {{ blog.overview }}
+                <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. -->
+            </p>
+        </div>
+    </section>
+    {% endfor %}
 {% endblock %}

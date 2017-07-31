@@ -12,6 +12,7 @@ def list(request, category):
     else:
         all_notes = Note.objects.filter(publish=True).order_by('-update_time')
 
+    """
     page = request.GET.get('page')
     paginator = Paginator(all_notes, 1)
     try:
@@ -20,6 +21,8 @@ def list(request, category):
         notes = paginator.page(1)
     except EmptyPage:
         notes = paginator.page(paginator.num_pages)
+    """
+    notes = all_notes
 
     context = {
         'notes': notes,

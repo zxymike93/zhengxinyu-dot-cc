@@ -1,37 +1,27 @@
-{% extends "list.html" %}
+{% extends "base.html" %}
 
-{% block title %}Mike's Note{% endblock %}
-{% block description %}Keep an open mind.{% endblock %}
+{% block post %}
+<div class="posts">
+    <h1 class="content-subhead">Recent Posts</h1>
 
-{% block list %}
-  {% for note in notes %}
-  <div class="blog-post">
-    <h2 class="blog-post-title"><a href="{% url 'note:detail' note.slug %}">{{ note.title }}</a></h2>
-    <p class="blog-post-meta">{{ note.subtitle }}</p>
-  </div>
-  {% endfor %}
-{% endblock %}
+    {% for note in notes %}
+    <section class="post">
+        <header class="post-header">
+            <img class="post-avatar" alt="Eric Ferraiuolo&#x27;s avatar" height="48" width="48" src="img/common/ericf-avatar.png">
 
-{% block paginator %}
-<nav>
-  <ul class="pager">
-    {% if notes.has_previous %}
-      <li><a href="?page={{ notes.previous_page_number }}">Previous</a></li>
-    {% endif %}
-    {% if notes.has_next %}
-      <li><a href="?page={{ notes.next_page_number }}">Next</a></li>
-    {% endif %}
-  </ul>
-</nav>
-{% endblock %}
+            <h2 class="post-title"><a href="{% url 'note:list' category %}">{{ note.title }}</a></h2>
 
-{% block sidebar %}
-<div class="sidebar-module">
-  <h4>Categories</h4>
-  <ol class="list-unstyled">
-    {% for category in categories %}
-    <li><a href="{% url 'note:list' category %}">{{ category }}</a></li>
+            <p class="post-meta">
+                By <a class="post-author" href="#">Eric Ferraiuolo</a> under <a class="post-category post-category-js" href="#">JavaScript</a>
+            </p>
+        </header>
+
+        <div class="post-description">
+            <p>
+              {{ note.overview }}
+                <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. -->
+            </p>
+        </div>
+    </section>
     {% endfor %}
-  </ol>
-</div>
 {% endblock %}
