@@ -8,6 +8,7 @@ ALLOWED_HOSTS = ['*']
 
 SETTINGS_DIR = Path(__file__).resolve()
 BASE_DIR = SETTINGS_DIR.parent.parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 ENVS = {}
 lines = open(os.path.join(BASE_DIR, 'env.txt'), 'r').readlines()
