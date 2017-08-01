@@ -20,7 +20,7 @@ class Blog(models.Model):
         return 'id: {}\ntitle:{}\n'.format(self.id, self.title)
 
     def overview(self):
-        return self.content[:50]
+        return self.content[:200]
 
     def save(self):
         self.slug = slugify(unidecode(self.title))

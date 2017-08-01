@@ -1,10 +1,6 @@
-{% extends "detail.html" %}
+{% extends "base.html" %}
 {% load markdownify %}
 
-{% block detail-title %}
-  {{ note.title }}
-{% endblock %}
-
-{% block detail-content %}
+{% block post %}
   {{ note.content | markdown | safe }}
 {% endblock %}

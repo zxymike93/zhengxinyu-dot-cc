@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^note/', include(note_urls, namespace='note')),
     url(r'^(?P<page>\d*)/$', blog_view.list),
-    url(r'^$', blog_view.list, name='list'),
+    url(r'^blog/$', blog_view.list, name='list'),
     url(r'^(?P<slug>[\w\d-]+)/$', blog_view.detail, name='detail'),
 ]
 

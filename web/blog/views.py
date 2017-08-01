@@ -7,7 +7,8 @@ from .models import Blog
 def list(request, page='1'):
     page = int(page)
     blogs = Blog.objects.all().order_by('-update_time')
-    p = Paginator(blogs, 7).page(page)
+    # p = Paginator(blogs, 7).page(page)
+    p = page
 
     context = {
         'blogs': p.object_list,
