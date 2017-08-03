@@ -151,3 +151,5 @@ LOGGING['handlers']['console'].pop('filters')
 LOGGING['handlers']['console']['formatter'] = 'simple'
 
 LOGGING['loggers']['django']['handlers'].append('log_file')
+
+STATIC_URL = '/static/'
