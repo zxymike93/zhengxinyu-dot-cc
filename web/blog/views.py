@@ -5,16 +5,15 @@ from .models import Blog
 
 
 def list(request, page='1'):
-    page = int(page)
     blogs = Blog.objects.all().order_by('-update_time')
+    # page = int(page)
     # p = Paginator(blogs, 7).page(page)
-    p = page
 
     context = {
         # 'blogs': p.object_list,
         'blogs': blogs,
-        'next': p.next_page_number() if p.has_next() else None,
-        'previous': p.previous_page_number() if p.has_previous() else None,
+        # 'next': p.next_page_number() if p.has_next() else None,
+        # 'previous': p.previous_page_number() if p.has_previous() else None,
     }
 
     return render(request, 'blog/list.html', context=context)
