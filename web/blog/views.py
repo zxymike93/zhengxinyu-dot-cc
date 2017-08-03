@@ -11,7 +11,8 @@ def list(request, page='1'):
     p = page
 
     context = {
-        'blogs': p.object_list,
+        # 'blogs': p.object_list,
+        'blogs': blogs,
         'next': p.next_page_number() if p.has_next() else None,
         'previous': p.previous_page_number() if p.has_previous() else None,
     }
