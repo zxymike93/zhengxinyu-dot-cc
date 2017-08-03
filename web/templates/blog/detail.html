@@ -1,7 +1,7 @@
 {% extends "detail.html" %}
 {% load markdownify %}
 
-{% http-title %}Blog{% endblock %}
+{% block http-title %}Blog{% endblock %}
 
 {% block detail-content %}
   {{ blog.content | markdown | safe }}
