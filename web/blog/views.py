@@ -5,7 +5,7 @@ from .models import Blog
 
 
 def list(request, page='1'):
-    blogs = Blog.objects.all().order_by('-update_time')
+    blogs = Blog.objects.filter(publish=True).order_by('-update_time')
     # page = int(page)
     # p = Paginator(blogs, 7).page(page)
 

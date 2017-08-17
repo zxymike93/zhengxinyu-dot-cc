@@ -3,7 +3,7 @@ import os
 import sys
 
 if __name__ == "__main__":
-    if os.uname().nodename == 'bogon':
+    if os.uname().sysname == 'Darwin':
         os.environ.setdefault(
             "DJANGO_SETTINGS_MODULE",
             "site_project.settings.dev"
