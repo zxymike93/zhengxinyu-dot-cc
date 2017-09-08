@@ -26,7 +26,7 @@ class Note(CommonInfo):
 
     category = models.ForeignKey(Category, null=True)
     title = models.CharField(max_length=150, unique=True)
-    subtitle = models.CharField(max_length=150)
+    subtitle = models.CharField(max_length=150, null=True, blank=True)
     content = models.TextField()
     slug = models.SlugField(max_length=200, blank=True)
     publish = models.BooleanField(default=False)

@@ -135,6 +135,9 @@ h3 {
     .post-category-django {
         background: green;
     }
+    .post-category-css {
+        background: #315780;
+    }
 
 .post-images {
     margin: 1em 0;
