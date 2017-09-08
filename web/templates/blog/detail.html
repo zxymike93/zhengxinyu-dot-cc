@@ -3,6 +3,10 @@
 
 {% block http-title %}Blog{% endblock %}
 
+{% block quote %}
+    Keep an open mind.
+{% endblock %}
+
 {% block post %}
   {{ blog.content | markdown | safe }}
 {% endblock %}
